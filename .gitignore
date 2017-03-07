@@ -1,2 +1,3 @@
 build/*
 Aifi Problem Statement
+!build/a*
