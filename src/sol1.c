@@ -17,7 +17,7 @@ void populateDeck(deck *d, int N)
 	/** Initializes Deck with 1-N elements representing each card **/
 	for(int i = 0; i < N; i++)
 	{
-		d->enqueue(d,i+1);
+		d->enqueue(d,i);
 	}
 }
 
@@ -34,7 +34,7 @@ void transferDeck(deck *d, int *table, int N) //Ask if deck is to be reversed
 
 	for(int i = 0; i < N; i++)
 	{
-		d->enqueue(d,table[N-1 - i]); //initializes queue in reverse..so dequeuing occurs correctly
+		d->enqueue(d,table[N-1-i]); //initializes queue in reverse..so dequeuing occurs correctly
 	}
 }
 
@@ -79,27 +79,34 @@ int main(int argc, char *argv[])
 	initDeck(&d);
 	populateDeck(&d,N);
 	
-	do
+	while(!d.isEmpty(&d)) //Simulating round;
 	{
-		while(!d.isEmpty(&d)) //Simulating round;
-		{
-			table[table_cnt++] = d.dequeue(&d);
+			table[N-1-table_cnt++] = d.dequeue(&d);
 			if(!d.isEmpty(&d))
 			d.enqueue(&d,d.dequeue(&d));
-		}
-		transferDeck(&d,table,N);
-		cnt = 0;
-		table_cnt = 0;
-		round ++;
-		// if(round % 1000000 == 0)
-		// 	printf("round: %lu\n", round );
-		if(round == ULONG_MAX)
-		{
-			printf("Counting Limit Overflowed %lu\n", ULONG_MAX);
-			break;
-		}
-	 } while(!checkTable(table,N));
+	}
 
-    printf("%d\n", round );
+	int *group = malloc( sizeof (int) * N);
+	int index;
+	for(int i = 0; i < N; i++)
+	{
+		group[i] = 1;
+	}
+
+
+	printf("\nComputing group \n");
+	for(int  i = 0; i <N; i++)
+	{
+		
+		index = i;
+		while( table[index] != i)
+		{
+			index = table[index];
+			group[i] += 1;
+		}
+		printf("%d: %d \n", i,group[i] );
+	}
+
+    //printf("%d\n", round+1);
 	return 0;
 }
