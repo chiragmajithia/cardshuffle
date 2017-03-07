@@ -38,19 +38,20 @@ void transferDeck(deck *d, int *table, int N) //Ask if deck is to be reversed
 	}
 }
 
-int checkTable(int *table, int N)
+int gcd(int n1, int n2)
 {
-	/** Assumes the deck intialization is sequential -- we check if cards on table
-		appear in sequence to check if the deck is restored to orignal order.
-	**/
-	for(int i = 0; i < N; i++)
-	{
-		if(table[i] != N-i)
-		{
-			return 0;
-		}
-	}
-	return 1;
+    if (n2==0)
+        return n1;
+    return gcd(n2, n1%n2);
+}
+ 
+
+long unsigned int findlcm(int arr[], int n)
+{
+   long unsigned ans = arr[0];
+   for (int i=1; i<n; i++)
+        ans = ( ((arr[i]*ans)) / (gcd(arr[i], ans)) );
+    return ans;
 }
 
 int main(int argc, char *argv[])
@@ -93,20 +94,16 @@ int main(int argc, char *argv[])
 		group[i] = 1;
 	}
 
-
-	printf("\nComputing group \n");
 	for(int  i = 0; i <N; i++)
 	{
-		
 		index = i;
 		while( table[index] != i)
 		{
 			index = table[index];
 			group[i] += 1;
 		}
-		printf("%d: %d \n", i,group[i] );
 	}
 
-    //printf("%d\n", round+1);
+    printf("%d\n", findlcm(group,N));
 	return 0;
 }
