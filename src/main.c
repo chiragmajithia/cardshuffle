@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "queue.h"
+#include <limits.h>
 
 void initDeck(deck *d)
 {
@@ -18,7 +19,6 @@ void populateDeck(deck *d, int N)
 	{
 		d->enqueue(d,i+1);
 	}
-	//d->showDeck(d);
 }
 
 void transferDeck(deck *d, int *table, int N) //Ask if deck is to be reversed
@@ -34,11 +34,8 @@ void transferDeck(deck *d, int *table, int N) //Ask if deck is to be reversed
 
 	for(int i = 0; i < N; i++)
 	{
-		//might as well set table values to 0 if required
 		d->enqueue(d,table[N-1 - i]); //initializes queue in reverse..so dequeuing occurs correctly
 	}
-	// printf("Transfer complete \n");
-	// d->showDeck(d);
 }
 
 int checkTable(int *table, int N)
@@ -50,7 +47,6 @@ int checkTable(int *table, int N)
 	{
 		if(table[i] != N-i)
 		{
-			//printf("%d != %d\n", table[i],N-i);
 			return 0;
 		}
 	}
@@ -75,13 +71,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	
 	deck d;	
 	int *table = malloc (sizeof (int) * N); //might implement stack!
+	int table_cnt = 0;
+	unsigned long int round = 0, cnt = 0;
 
 	initDeck(&d);
 	populateDeck(&d,N);
-	int cnt = 0, table_cnt = 0, round = 0;
 	
 	do
 	{
@@ -96,21 +92,23 @@ int main(int argc, char *argv[])
 			{
 				d.enqueue(&d,c);
 			}
-			//d.showDeck(&d);
-			//getchar();
 		}
 		transferDeck(&d,table,N);
 		cnt = 0;
 		table_cnt = 0;
 		round ++;
-		//printf("round:%d\n",round);
+		if(round % 1000000 == 0)
+		{
+			printf("round: %lu cnt = %lu \n", round, cnt );
+			d.showDeck(&d);
+		}
+		if(round == ULONG_MAX)
+		{
+			printf("Counting Limit Overflowed %lu\n", ULONG_MAX);
+			break;
+		}
 	 } while(!checkTable(table,N));
 
-	// for(int i = 0; i < N; i++)
-	// {
-	// 	printf("%d\n", table[i] );
-	// }
-	// d.showDeck(&d);
-	 printf("%d\n", round );
+    printf("%d\n", round );
 	return 0;
 }

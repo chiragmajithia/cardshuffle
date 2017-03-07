@@ -5,3 +5,6 @@ include_directories(include)
 add_executable(a 
 	src/main.c 
 	include/queue.h)
+
+add_executable(sol1 
+    src/sol1.c)

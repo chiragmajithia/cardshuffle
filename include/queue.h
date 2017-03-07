@@ -40,7 +40,6 @@ void enqueue(deck* this, int info)
         this->rear=newnode;       // make the newnode as rear of the queue
         this->rear->next=NULL;    // set the next of the rear to NULL 
     }
-    //printf("%d enqueued\n",info ); //Notify on stdout
 }
 
 int dequeue(deck* this)
@@ -61,7 +60,6 @@ int dequeue(deck* this)
         if(this->front == NULL)       //if the front reaches rear, and rear is popped, the rear has to be reset.
         {
             this->rear = NULL;        //reseting the rear
-            //printf("Queue Emptied\n");
         }
     }
     return info;                // Return popped character

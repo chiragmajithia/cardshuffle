@@ -1,3 +1,5 @@
 build/*
 Aifi Problem Statement
+CMakeLists.txt
+sol1.c
 !build/a*
