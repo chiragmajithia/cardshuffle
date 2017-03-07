@@ -1,0 +1,4 @@
+/home/chirag/Job Applications/AiFi/Part 1/build/CMakeFiles/edit_cache.dir
+/home/chirag/Job Applications/AiFi/Part 1/build/CMakeFiles/rebuild_cache.dir
+/home/chirag/Job Applications/AiFi/Part 1/build/CMakeFiles/sol2.dir
+/home/chirag/Job Applications/AiFi/Part 1/build/CMakeFiles/sol1.dir

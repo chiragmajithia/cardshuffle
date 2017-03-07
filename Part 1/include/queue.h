@@ -1,14 +1,16 @@
 #ifndef QUEUE_H
 #define QUEUE_H
-typedef struct deck_element deck_element;
+
+/** Definition and Declaration of QUEUE implmentation used for Deck in our problem **/
+
+typedef struct deck_element deck_element; // define a deck_elment
 struct  deck_element
 {
 	int  n;
 	struct deck_element *next;
 };
 
-typedef struct deck deck;
-
+typedef struct deck deck; // define a deck
 struct deck
 {
     deck_element *front,  *rear;
@@ -82,6 +84,7 @@ void showDeck(deck* this)
 
 int isEmpty(deck* this)
 {
+    /** Returns 1 if there are no elements in deck **/
     return (this->front == NULL);
 }
 

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/queue.h
+
+/home/chirag/Job Applications/AiFi/Part 1/src/sol1.c
+stdio.h
+-
+stdlib.h
+-
+queue.h
+/home/chirag/Job Applications/AiFi/Part 1/src/queue.h
+limits.h
+-
+

@@ -1,0 +1,11 @@
+The low power MCU's are generally limited in Memory. Thus, instead of using 'LinkedList' based Queue implementaion, it would be advisable to use array based implementation. As for each element stored in Linked List Based implementation, there is a overhead of storing the pointer to 'next' location. However, the array based implementation ensures continuous memory allocation and hence, is more efficient in space. 
+
+Moreover, in low-power applications, the power consumption is dependent mainly on the clocking of transitors. Thus to enure longer durability of the power source (battery), it is desirable to have a sophisticated algorithm, that converges quickly to the solution, instead of iterating  using brute force. The sol1.c is the naive / brute force algorithm where as the sol2.c uses a canonical cycles approach used in Rubik cube solution.
+
+As observed, the sol1.c  works well for most lengths of the sequence (N), however, there are few cases where it fails to converge (in desirable amount of time) - N = 300, 1000, etc. This is because, these sequences require very high number of rounds to reset, hence the brute force approach takes too long to "simulate" the process. Hence, it is required to have more efficient  algorithm.
+
+Sol2.c makes use of following axiom : if P consists of multiple cycles of varying length, then the order of that permutation is n, if applying P on the given sequence n times, makes the sequence return to its beginning state.
+
+If P consists of multiple cycles of varying length, then the order is the least common multiple of the lengths of the cycles, since that number of cycle steps will return the individual sub-sequences to their starting states. [http://web.mit.edu/sp.268/www/rubik.pdf]
+
+The approach is implemented in sol2.c using the queue structure implemented in sol1.c (queue.c)

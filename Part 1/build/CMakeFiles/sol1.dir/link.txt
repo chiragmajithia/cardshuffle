@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/sol1.dir/src/sol1.c.o  -o sol1 
